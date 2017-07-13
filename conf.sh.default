@@ -7,6 +7,7 @@ main() {
     source $SCRIPTDIR/dscripts/conf_lib.sh  # load library functions
 
     init_sudo
+    set_volume_root
     set_image_and_container_name
     set_users
     set_buildargs
