@@ -1,3 +1,6 @@
 [submodule "dscripts"]
 	path = dscripts
 	url = https://github.com/identinetics/dscripts.git
+[submodule "install/opt/jenkins_webhook"]
+	path = install/opt/jenkins_webhook
+	url = https://github.com/identinetics/jenkins_webhook.git

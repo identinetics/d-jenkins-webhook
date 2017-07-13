@@ -9,25 +9,31 @@ main() {
     init_sudo
     set_image_and_container_name
     set_users
-    #set_buildargs
-    #set_run_args
+    set_buildargs
+    set_run_args
     set_network
     set_vol_mapping
-    #enable_x11_client
-    #enable_pkcs11
-    #enable_sshd()     # usually used only for debugging - requires installed sshd in image
 }
 
 
-#set_volume_root() {
-#}
+set_volume_root() {
+    # container volumes mounted to host paths, or symlinks to docker volumes
+    DOCKERVOL_SHORT='/dv'
+    DOCKERLOG_SHORT='/dl'
+    #if [[ "$TRAVIS" == "true" ]] || [[ ! -z ${JENKINS_HOME+x} ]]; then
+    #    DOCKERVOL_SHORT='./dv';
+    #    DOCKERLOG_SHORT='./dl';
+    #fi
+    mkdir -p $DOCKERVOL_SHORT $DOCKERLOG_SHORT
+}
 
 
 set_image_and_container_name() {
     # This IMGID qualifies image, container, user and IP adddress; this is helpful for managing
-    IMGID='06'
+    IMGID='42'
     # processes on the docker host etc.
-    PROJSHORT='jenk-webhk'
+    PROJSHORT='gh2jenkins'
+    SERVICEDESCRIPTION=github2jenkins_proxy
     export IMAGENAME="rhoerbe/$PROJSHORT"  # [a-z_0-9]
     export CONTAINERNAME="${IMGID}$PROJSHORT"
     export DOCKER_REGISTRY=''  # blank for index.docker.io
@@ -35,17 +41,30 @@ set_image_and_container_name() {
 
 
 set_users() {
+    export CONTAINERUSER="$PROJSHORT${IMGID}"   # group and user to run container
+    export CONTAINERUID="3430${IMGID}"     # gid and uid for CONTAINERUSER
     export START_AS_ROOT=      # 'True' (e.g. for apache to fall back to www user)
 }
 
 
 set_buildargs() {
-    export BUILDARGS=""
+    export BUILDARGS="
+        --build-arg CONTAINERUID=$CONTAINERUID
+    "
 }
 
 
 set_run_args() {
-    export ENVSETTINGS=""
+    # add installation-specific unguessable get-/post-paths, or limit access to selected IP-addresses
+    export ENVSETTINGS="
+        GETPATH=t1mYfs918q4u5ydzOHXIaA4y
+        OWNERLIST=identinetics,rhoerbe
+        POSTPATH=TkFQBwJfYgvc6VPNgxjQESfV
+        JENKINSBASEURL=http://localhost:8080/buildByToken/build
+        JENKINSAPITOKEN=asdf98w4jsfd
+        WEBHOOKPROXY=http://localhost:8081/status
+        POLLING_INTERVAL=10
+    "
     export STARTCMD='/bin/bash'  # unset or blank to use image default
 }
 
@@ -69,7 +88,7 @@ set_network() {
 set_vol_mapping() {
     VOLLIST=''
     VOLMAPPING=''
-    map_host_directory "/tmp" '/host_cd/' 'z'
+    map_docker_volume "${CONTAINERNAME}.data" '/data' 'Z' $DOCKERVOL_SHORT
 }
 
 

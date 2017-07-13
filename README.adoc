@@ -1,0 +1,27 @@
+# Docker container for Jenkins Webhook Proxy
+
+This projects provides an image for both the webhook porxy server and the polling script, to be
+run on different servers
+
+## Install & build image
+
+    cd <your-install-root>
+    git clone https://github.com/identinetics/d-jenkins-webhook.git
+    cd d-jenkins-webhook
+    git submodule update --init --checkout
+    cp conf.sh.default conf.sh
+    # conf.sh: optionally change image name, userid
+    ./dscripts/build.sh
+
+## Configure & run webhook proxy
+
+    # conf.sh: optionally set run_args, network and volume mapping
+    # configure HTTPS-proxy to front the web server on :8080
+    ./dscripts/run.sh /scripts/start_webhook_srv.sh  # add options -i -p for initial testing
+
+## Configure & run polling script
+
+    # conf.sh: optionally set run_args, network and volume mapping
+    # configure HTTPS-proxy to front the web server on :8080
+    ./dscripts/run.sh -ip bash
+    vi /data/.config # add git-repo to jenkins-job mapping
