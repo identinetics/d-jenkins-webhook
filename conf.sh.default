@@ -58,13 +58,13 @@ set_buildargs() {
 set_run_args() {
     # add installation-specific unguessable get-/post-paths, or limit access to selected IP-addresses
     export ENVSETTINGS="
-        GETPATH=t1mYfs918q4u5ydzOHXIaA4y
-        OWNERLIST=identinetics,rhoerbe
-        POSTPATH=TkFQBwJfYgvc6VPNgxjQESfV
-        JENKINSBASEURL=http://localhost:8080/buildByToken/build
-        JENKINSAPITOKEN=asdf98w4jsfd
-        WEBHOOKPROXY=http://localhost:8081/status
-        POLLING_INTERVAL=10
+        -e GETPATH=t1mYfs918q4u5ydzOHXIaA4y
+        -e OWNERLIST=identinetics,rhoerbe
+        -e POSTPATH=TkFQBwJfYgvc6VPNgxjQESfV
+        -e JENKINSBASEURL=http://localhost:8080/buildByToken/build
+        -e JENKINSAPITOKEN=asdf98w4jsfd
+        -e WEBHOOKPROXY=http://localhost:8081/status
+        -e POLLING_INTERVAL=10
     "
     export STARTCMD='/bin/bash'  # unset or blank to use image default
 }
