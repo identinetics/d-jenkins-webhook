@@ -29,7 +29,9 @@ COPY install/tests/* /tests/
 COPY install/opt/jenkins_webhook/src/* /scripts/
 COPY install/opt/jenkins_webhook/tests/* /tests/
 RUN $PYTHON3 -m pip install requests werkzeug \
- && chmod +x /scripts/*
+ && chmod +x /scripts/* \
+ && mkdir /data \
+ && chown $CONTAINERUID:$CONTAINERGID /data
 
 VOLUME /data
 USER $USERNAME
