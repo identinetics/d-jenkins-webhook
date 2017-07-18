@@ -26,9 +26,9 @@ RUN groupadd --non-unique -g $CONTAINERGID $USERNAME \
 
 COPY install/scripts/* /scripts/
 COPY install/tests/* /tests/
-COPY install/opt/jenkins-webhook/src/* /scripts/
-COPY install/opt/jenkins-webhook/tests/* /tests/
-RUN $PYTHON3 -m pip install werkzeug \
+COPY install/opt/jenkins_webhook/src/* /scripts/
+COPY install/opt/jenkins_webhook/tests/* /tests/
+RUN $PYTHON3 -m pip install requests werkzeug \
  && chmod +x /scripts/*
 
 VOLUME /data
