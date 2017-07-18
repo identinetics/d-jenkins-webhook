@@ -7,7 +7,8 @@ while true; do
         --config /data/.config \
         --datadir /data \
         --jenkins-baseurl $JENKINSBASEURL \
-        --jenkins-apitoken $JENKINSAPITOKEN
+        --jenkins-apitoken $JENKINSAPITOKEN \
+        --webhook-proxy $WEBHOOKPROXY
 
     sleep $POLLING_INTERVAL
 done

@@ -24,6 +24,10 @@ ARG CONTAINERGID=$CONTAINERUID
 RUN groupadd --non-unique -g $CONTAINERGID $USERNAME \
  && useradd  --non-unique --gid $CONTAINERGID --uid $CONTAINERUID $USERNAME
 
+# install Letsencrypt intermediate cert (in case it is not served by the httpd)
+COPY install/etc/pki/letsencryptx3.pem /etc/pki/ca-trust/source/anchors/letsencryptx3.pem
+RUN update-ca-trust
+
 COPY install/scripts/* /scripts/
 COPY install/tests/* /tests/
 COPY install/opt/jenkins_webhook/src/* /scripts/
