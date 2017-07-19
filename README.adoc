@@ -19,6 +19,14 @@ run on different servers
     # configure HTTPS-proxy to front the web server on :8080
     ./dscripts/run.sh /scripts/start_webhook_srv.sh  # add options -i -p for initial testing
 
+## Configure Jenkins to accept build triggers from anonymous users
+
+    # install the 'Build Authorization Token Root Plugin' on Jenkins (https://plugins.jenkins.io/build-token-root)
+    # in job options, section "build triggers", enable starting build by scripts and define an authentication token
+    # configure the authentication token value in the polling script below.
+    # test the trigger using
+    curl http://myhost/buildByToken/build?job=myrepo&token=somevalue12039841234
+
 ## Configure & run polling script
 
     # conf.sh: optionally set run_args, network and volume mapping

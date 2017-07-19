@@ -8,7 +8,7 @@ while true; do
         --datadir /data \
         --jenkins-baseurl $JENKINSBASEURL \
         --jenkins-apitoken $JENKINSAPITOKEN \
-        --webhook-proxy $WEBHOOKPROXY
+        --webhook-proxy $WEBHOOKPROXY $TRIGGER_JENKINS_OPTS
 
     sleep $POLLING_INTERVAL
 done
