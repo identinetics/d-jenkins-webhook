@@ -62,7 +62,7 @@ _set_run_args() {
         -e JENKINSAPITOKEN=asdf98w4jsfd
         -e WEBHOOKPROXY=http://localhost:8081/status
         -e POLLING_INTERVAL=10
-        -e $TRIGGER_JENKINS_OPTS=
+        -e TRIGGER_JENKINS_OPTS=
     "
     # uncomment one of the following startup options
     #export STARTCMD='/scripts/run_trigger_jenkins.sh'
