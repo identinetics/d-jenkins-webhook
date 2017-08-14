@@ -54,13 +54,14 @@ _set_buildargs() {
 
 _set_run_args() {
     # add installation-specific unguessable get-/post-paths, or limit access to selected IP-addresses
+    getpath=t1mYfs918q4u5ydzOHXIaA4y
     export ENVSETTINGS="
-        -e GETPATH=t1mYfs918q4u5ydzOHXIaA4y
-        -e OWNERLIST=identinetics,rhoerbe
+        -e GETPATH=${getpath}
+        -e OWNERLIST=identinetics,rhoerbe,edushare-at
         -e POSTPATH=TkFQBwJfYgvc6VPNgxjQESfV
         -e JENKINSBASEURL=http://localhost:8080/buildByToken/build
         -e JENKINSAPITOKEN=asdf98w4jsfd
-        -e WEBHOOKPROXY=http://localhost:8081/status
+        -e WEBHOOKPROXY=https://gh2j.identinetics.com/${getpath}
         -e POLLING_INTERVAL=10
         -e TRIGGER_JENKINS_OPTS=
     "
