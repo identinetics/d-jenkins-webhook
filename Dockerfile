@@ -11,7 +11,7 @@ RUN yum -y update \
 # the EPEL or IUS versions are preferred. EPEL does not have tkinter.
 # SCL version
  && yum -y install centos-release-scl \
- && yum -y install rh-python34 rh-python34-python-pip \
+ && yum -y install rh-python34-devel rh-python34-python-pip \
  && yum clean all \
  && source /opt/rh/rh-python34/enable \
  && echo "source /opt/rh/rh-python34/enable" > /etc/profile.d/setpython \
@@ -28,7 +28,7 @@ RUN groupadd --non-unique -g $CONTAINERGID $USERNAME \
 COPY install/etc/pki/letsencryptx3.pem /etc/pki/ca-trust/source/anchors/letsencryptx3.pem
 RUN update-ca-trust
 
-RUN $PYTHON3 -m pip install requests werkzeug
+RUN $PYTHON3 -m pip install python-jenkins requests werkzeug
 COPY install/scripts/* /scripts/
 COPY install/tests/* /tests/
 COPY install/opt/jenkins_webhook/src/* /scripts/

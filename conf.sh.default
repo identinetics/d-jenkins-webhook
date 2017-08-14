@@ -59,7 +59,7 @@ _set_run_args() {
         -e GETPATH=${getpath}
         -e OWNERLIST=identinetics,rhoerbe,edushare-at
         -e POSTPATH=TkFQBwJfYgvc6VPNgxjQESfV
-        -e JENKINSBASEURL=http://localhost:8080/buildByToken/build
+        -e JENKINSBASEURL=http://localhost:8080
         -e JENKINSAPITOKEN=asdf98w4jsfd
         -e JENKINSUSER=xxxxx
         -e JENKINSUSERTOKEN=xxxxxxxxxx
