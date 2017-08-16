@@ -60,7 +60,7 @@ _set_run_args() {
         -e OWNERLIST=identinetics,rhoerbe,edushare-at
         -e POSTPATH=TkFQBwJfYgvc6VPNgxjQESfV
         -e JENKINSBASEURL=http://localhost:8080
-        -e JENKINSAPITOKEN=asdf98w4jsfd
+        -e JENKINSAPITOKEN=xxxxxxxxxx
         -e JENKINSUSER=xxxxx
         -e JENKINSUSERTOKEN=xxxxxxxxxx
         -e WEBHOOKPROXY=https://gh2j.identinetics.com/${getpath}
