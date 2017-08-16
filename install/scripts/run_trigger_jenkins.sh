@@ -7,7 +7,6 @@ while true; do
         --config /data/.config \
         --datadir /data \
         --jenkins-baseurl $JENKINSBASEURL \
-        --jenkins-apitoken $JENKINSAPITOKEN \
         --user $JENKINSUSER \
         --password $JENKINSUSERTOKEN \
         --webhook-proxy $WEBHOOKPROXY $TRIGGER_JENKINS_OPTS
